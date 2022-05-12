@@ -77,13 +77,15 @@
 
     ##### 安全配置向导
     ```Shell
+    systemctl restart mariadb
     mysql_secure_installation
     ```
 
     ##### 向导说明
     ```Shell
     Enter current password for root (enter for none):   #提示你输入root密码, 没有密码, 直接回车
-    Set root password? [Y/n] n                          #是否为 root 用户设置密码,输入n, 用户默认使用auth_socket进行鉴权
+    Switch to unix_socket authentication [Y/n] n        #是否切换到unix套接字身份验证[Y/n]
+    Change the root password? [Y/n]                     #是否为 root 用户设置密码,输入n, 用户默认使用auth_socket进行鉴权
     Remove anonymous users? [Y/n] Y                     #删除匿名用户
     Disallow root login remotely? [Y/n] Y               #禁止root用户远程登陆
     Remove test database and access to it? [Y/n] Y      #删除测试数据库
