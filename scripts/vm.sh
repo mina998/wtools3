@@ -48,9 +48,15 @@ fi
 #创建虚拟主机配置目录
 mkdir $vmhost
 #下载虚拟主机配置文件
-wget -O $vmhost/vhconf.conf https://github.com/mina998/test/raw/master/vhconf.conf
+wget -O $vmhost/vhconf.conf https://github.com/mina998/wtools/raw/lsws/vhost/vhconf.conf
+#修改所有者
+chown -R lsadm:nogroup $vmhost
 
 cd ..
+# 下载证书文件
+wget https://github.com/mina998/wtools/raw/lsws/vhost/example.crt
+wget https://github.com/mina998/wtools/raw/lsws/vhost/example.key
+
 #打印服务器配置
-wget -qO - https://github.com/mina998/test/raw/master/http | sed -e "s/HOST_NAME/$vmhost/" -e "s/DOMAIN/$domain/"
+wget -qO - https://github.com/mina998/wtools/raw/lsws/vhost/lsws | sed -e "s/HOST_NAME/$vmhost/" -e "s/DOMAIN/$domain/"
 
