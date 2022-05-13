@@ -1,1 +1,11 @@
 #创建虚拟主机所用模板
+
+example.crt 
+example.crt 
+以上两文件上传到LSWS安装路径的conf目录
+
+lsws
+把上面文件中的内容添加到SWS安装路径的conf目录下的httpd_config.conf文件中
+
+vhconf.conf
+上面文件是虚拟主机的配置文件 上传到LSWS安装路径的conf下的vhosts文件夹的虚拟主机目录
