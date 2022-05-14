@@ -183,7 +183,9 @@
     wget https://github.com/mina998/wtools/raw/lsws/scripts/vm.sh
     bash vm.sh
 
-    #必须重启服务器 并设置好文件所有者和权限
+    #必须重启LSWS服务 并设置好文件所有者和权限
+    systemctl restart lsws
+    /usr/local/lsws/bin/lswsctrl restart
     ```
 
     ##### 手动备份恢复网站
