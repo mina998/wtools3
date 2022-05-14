@@ -188,6 +188,13 @@
     /usr/local/lsws/bin/lswsctrl restart
     ```
 
+    ##### 设置上传文件大小
+    在虚拟主机-常规-php.ini 覆盖 中添加以下代码
+    ```Shell
+    php_value post_max_size = 300M
+    php_value upload_max_filesize = 300M
+    ```
+
     ##### 手动备份恢复网站
     ```Shell
     wget https://github.com/mina998/wtools/raw/lsws/scripts/web.sh
