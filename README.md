@@ -189,11 +189,15 @@
     /usr/local/lsws/bin/lswsctrl restart
     ```
 
-    ##### 设置上传文件大小
+    ##### PHP设置
     在虚拟主机-常规-php.ini 覆盖 中添加以下代码
     ```Shell
+    #限制通过POST方法可以接受的信息最大量
     php_value post_max_size = 300M
+    #限制PHP处理上传文件的最大值,此值必须小于post_max_size值
     php_value upload_max_filesize = 300M
+    #设置脚本可以分配的最大内存量，防止失控的脚本独占服务器内存
+    php_value memory_limit = 256M #安装WooCommerce 推荐512
     ```
 
     ##### 手动备份恢复网站
