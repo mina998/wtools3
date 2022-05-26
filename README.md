@@ -15,10 +15,11 @@
     ```
 
     ##### 安装PHP[可选]
-    如果默认版本不符合要求,可以安装指定版本PHP和扩展, 以下命令中的73代表PHP版本号
+    如果默认版本不符合要求,可以安装指定版本PHP和扩展, 以下命令中的74代表PHP版本号
     ```Shell
-    apt install lsphp73 lsphp73-common lsphp73-curl lsphp73-mysql lsphp73-opcache lsphp73-imap lsphp73-opcache 
-    apt install lsphp73-imagick
+    apt install lsphp74 lsphp74-common lsphp74-curl lsphp74-mysql lsphp74-opcache lsphp74-imap lsphp74-opcache
+    #wordpress 必须组件 
+    apt install lsphp74-imagick lsphp74-curl lsphp74-intl -y
 
     ln -sf /usr/local/lsws/lsphp73/bin/lsphp /usr/local/lsws/fcgi-bin/lsphp5
     ```

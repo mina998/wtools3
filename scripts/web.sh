@@ -15,6 +15,7 @@ db_pass=463888
 web_dir=/usr/local/lsws/www.kofoy.com
 #备份文件保存目录 后缀不加/
 backup=/root/backup
+#backup=$(pwd)/backup
 
 
 #备份网站保存名称
