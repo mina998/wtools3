@@ -67,22 +67,22 @@
     ```
 
     ##### 添加存储库
-    ```Shell
-    #ubuntu 18.04
-    add-apt-repository 'deb [arch=amd64,arm64,ppc64el] https://mirrors.gigenet.com/mariadb/repo/10.5/ubuntu bionic main'
+```Shell
+#ubuntu 18.04
+add-apt-repository 'deb [arch=amd64,arm64,ppc64el] https://mirrors.gigenet.com/mariadb/repo/10.5/ubuntu bionic main'
 
-    #ubuntu 20.04
-    add-apt-repository 'deb [arch=amd64,arm64,ppc64el,s390x] https://mirrors.gigenet.com/mariadb/repo/10.5/ubuntu focal main'
+#ubuntu 20.04
+add-apt-repository 'deb [arch=amd64,arm64,ppc64el,s390x] https://mirrors.gigenet.com/mariadb/repo/10.5/ubuntu focal main'
 
-    #debian 9
-    add-apt-repository 'deb [arch=amd64,i386,ppc64el,arm64] https://mirrors.gigenet.com/mariadb/repo/10.5/debian stretch main'
+#debian 9
+add-apt-repository 'deb [arch=amd64,i386,ppc64el,arm64] https://mirrors.gigenet.com/mariadb/repo/10.5/debian stretch main'
 
-    #debian 10
-    add-apt-repository 'deb [arch=amd64,arm64,ppc64el] https://mirrors.gigenet.com/mariadb/repo/10.5/debian buster main'
+#debian 10
+add-apt-repository 'deb [arch=amd64,arm64,ppc64el] https://mirrors.gigenet.com/mariadb/repo/10.5/debian buster main'
 
-    #debian 11
-    add-apt-repository 'deb [arch=amd64,i386,arm64,ppc64el] https://mirrors.gigenet.com/mariadb/repo/10.5/debian bullseye main'
-    ```
+#debian 11
+add-apt-repository 'deb [arch=amd64,i386,arm64,ppc64el] https://mirrors.gigenet.com/mariadb/repo/10.5/debian bullseye main'
+```
 
     ##### 安装
     ```Shell
