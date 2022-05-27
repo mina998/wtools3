@@ -30,12 +30,24 @@
     ```
 
     ##### 防火墙设置 [可选]
-    如果服务器有防火墙需要设置放行端口
     ```Shell
-    iptables -t filter -I INPUT -p tcp --dport 80 -j ACCEPT
-    iptables -t filter -I INPUT -p tcp --dport 443 -j ACCEPT
-    iptables -t filter -I INPUT -p tcp --dport 7080 -j ACCEPT
-    iptables -t filter -I INPUT -p tcp --dport 8088 -j ACCEPT
+    #如果服务器有防火墙需要设置放行端口 
+    iptables -I INPUT -p tcp --dport 80 -j ACCEPT #单端口
+    iptables -I INPUT -p tcp -m multiport --dports 22,80,443,7080,8088 -j ACCEPT #多端口
+    #保存规则
+    iptables-save > /etc/iptables.rules  
+    #重启自动加载 编辑(创建) /etc/rc.local 文件  添加以下代码
+    ````
+    ````Shell
+    #!/bin/sh -e
+    /sbin/iptables-restore < /etc/iptables.rules
+    exit 0
+    ````    
+    ```Shell
+    #添加执行权限
+    chmod +x /etc/rc.local
+    systemctl enable re-local #报错参考 https://blog.csdn.net/qq_17802895/article/details/114289172
+    systemctl start re-local
     ```
 
     ##### 访问面板
