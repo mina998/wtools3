@@ -41,15 +41,15 @@
     ````Shell
     #重启自动加载 编辑(创建) /etc/rc.local 文件  添加以下代码
 
-    #!/bin/sh -e
+    #!/bin/bash
     /sbin/iptables-restore < /etc/iptables.rules
     exit 0
     ````    
     ```Shell
     #添加执行权限
     chmod +x /etc/rc.local
-    systemctl enable re-local #报错参考 https://blog.csdn.net/qq_17802895/article/details/114289172
-    systemctl start re-local
+    #systemctl enable rc-local #[此项不需要] 报错参考 https://blog.csdn.net/qq_17802895/article/details/114289172
+    systemctl start rc-local
     ```
 
     ##### 访问面板
@@ -113,8 +113,8 @@
     ##### MySQL数据库操作
     ```Shell
     show databases;         #查看所有数据库
-    create database dbname; #新建数据库
-    drop database dbname;   #删除数据库
+    create database dbname; #新建数据库
+    drop database dbname;   #删除数据库
 
     #导入MySQL数据1
     mysql > use db_name 
@@ -150,10 +150,10 @@
     mysql  >Delete FROM user Where User='test' and Host='localhost';
 
     #删除用户2
-    drop user 'username'@'host'; 
+    drop user 'username'@'host'; 
 
     #授权test用户有testDB数据库的所有权限
-    grant all privileges on testDB.* to 'test'@'%' identified by 'test123';
+    grant all privileges on testDB.* to 'test'@'%' identified by 'test123';
 
     #刷新权限
     mysql > flush privileges;
