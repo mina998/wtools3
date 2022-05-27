@@ -43,7 +43,7 @@ iptablesRules
 /sbin/iptables-restore < /etc/iptables.rules
 exit 0
 rcL
-
+	chmod +x /etc/rc.local
 	#启动服务
 	systemctl start rc-local
 
