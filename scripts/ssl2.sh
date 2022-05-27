@@ -53,7 +53,8 @@ certSSL(){
 	fi
 
 	# 开使申请证书
-	~/.acme.sh/acme.sh --issue -d $domain -d www.$domain --webroot $siteDocRoot
+	~/.acme.sh/acme.sh --issue -d $domain --webroot $siteDocRoot
+	#~/.acme.sh/acme.sh --issue -d $domain -d www.$domain --webroot $siteDocRoot
 	# 证书签发是否成功
 	if [ ! -f "/root/.acme.sh/$domain/fullchain.cer" ] ; then 
 		echo "证书签发失败."
