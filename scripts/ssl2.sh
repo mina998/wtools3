@@ -35,7 +35,7 @@ certSSL(){
 		mkdir -p $sslSaveRoot
 	fi
 	# 获取域名
-	read -p "请输入域名不要带3W(eg:demo.com):" domain
+	read -p "请输入域名(eg:www.demo.com):" domain
 	if [ -z $domain ] ; then
 		echo '域名不能为空!'
 		exit 0
