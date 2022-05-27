@@ -17,7 +17,7 @@
     ##### 安装PHP[可选]
     如果默认版本不符合要求,可以安装指定版本PHP和扩展, 以下命令中的74代表PHP版本号
     ```Shell
-    apt install lsphp74 lsphp74-common lsphp74-curl lsphp74-mysql lsphp74-opcache lsphp74-imap lsphp74-opcache
+    apt install lsphp74 lsphp74-common lsphp74-mysql lsphp74-opcache lsphp74-imap
     #wordpress 必须组件 
     apt install lsphp74-imagick lsphp74-curl lsphp74-intl -y
 
@@ -40,7 +40,7 @@
 
     ````Shell
     #重启自动加载 编辑(创建) /etc/rc.local 文件  添加以下代码
-    
+
     #!/bin/sh -e
     /sbin/iptables-restore < /etc/iptables.rules
     exit 0
