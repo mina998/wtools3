@@ -41,7 +41,7 @@ certSSL(){
 		exit 0
 	fi
 	# 获取本机IP
-	local2_ip=$(curl https://api-ipv4.ip.sb/ip)
+	local2_ip=$(curl -s https://api.ip.sb/ip -A Mozilla)
 	# 获取域名解析IP
 	domain_ip=$(ping "${domain}" -c 1 | sed '1{s/[^(]*(//;s/).*//;q}')
 	# 判断是否解析成功
