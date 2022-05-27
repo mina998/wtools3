@@ -15,6 +15,10 @@ certSSL(){
 	    apt-get install cron -y
 	    service cron restart
 	fi
+	# 安装PING命令
+	if [ ! `command -v ping` ] ; then
+	    apt install iputils-ping -y
+	fi
 	# 下载安装证书签发程序
 	if [ ! -f "/root/.acme.sh/acme.sh" ] ; then 
 		curl https://get.acme.sh | sh -s email=my@example.com
@@ -28,7 +32,7 @@ certSSL(){
 	# 获取证书保存目录
 	read -p "请输入证书保存目录(eg:/usr/local/lsws/wordpress/ssl):" sslSaveRoot
 	if [ ! -d $sslSaveRoot ] ; then
-		mkdir -P $sslSaveRoot
+		mkdir -p $sslSaveRoot
 	fi
 	# 获取域名
 	read -p "请输入域名不要带3W(eg:demo.com):" domain
