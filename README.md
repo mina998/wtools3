@@ -36,8 +36,8 @@
     iptables -I INPUT -p tcp -m multiport --dports 22,80,443,7080,8088 -j ACCEPT #多端口
     #保存规则
     iptables-save > /etc/iptables.rules  
-    #重启自动加载 编辑(创建) /etc/rc.local 文件  添加以下代码
     ````
+    重启自动加载 编辑(创建) /etc/rc.local 文件  添加以下代码
     ````Shell
     #!/bin/sh -e
     /sbin/iptables-restore < /etc/iptables.rules
