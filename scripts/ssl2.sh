@@ -45,7 +45,7 @@ certSSL(){
 	# 获取域名解析IP
 	domain_ip=$(ping "${domain}" -c 1 | sed '1{s/[^(]*(//;s/).*//;q}')
 	# 判断是否解析成功
-	if [ "$localh_ip" = "$domain_ip" ];then
+	if [ $localh_ip=$domain_ip ] ; then
 		echo "域名dns解析IP: $domain_ip"
 	else
 		echo "域名解析失败."
