@@ -39,6 +39,9 @@
     ````
 
     ````Shell
+    #保存规则并重启生效[测试甲骨文VPS无效]
+    netfilter-persistent save
+    
     #重启自动加载 编辑(创建) /etc/rc.local 文件  添加以下代码
 
     #!/bin/bash
