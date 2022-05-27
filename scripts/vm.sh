@@ -65,3 +65,13 @@ fi
 #打印服务器配置
 wget -qO - https://github.com/mina998/wtools/raw/lsws/vhost/lsws | sed -e "s/HOST_NAME/$vmhost/" -e "s/DOMAIN/$domain/"
 
+#
+cd ..
+if [ -d $vmhost/wordpress ] ; then
+    rm -rf $vmhost/wordpress
+fi
+mkdir -p $vmhost/wordpress
+
+echo -e '<?php \n phpinfo();' > $vmhost/wordpress/index.php
+
+chown -R nobody:nogroup $vmhost/wordpress
