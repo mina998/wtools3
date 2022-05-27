@@ -37,6 +37,8 @@
     #如果服务器有防火墙需要设置放行端口 
     iptables -I INPUT -p tcp --dport 80 -j ACCEPT #单端口
     iptables -I INPUT -p tcp -m multiport --dports 22,80,443,7080,8088 -j ACCEPT #多端口
+    iptables -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT #
+    iptables -A INPUT -i lo -j ACCEPT
     #修改默认为拒绝所有
     iptables -P INPUT DROP
     #保存规则
