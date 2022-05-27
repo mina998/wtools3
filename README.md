@@ -37,8 +37,10 @@
     #保存规则
     iptables-save > /etc/iptables.rules  
     ````
-    重启自动加载 编辑(创建) /etc/rc.local 文件  添加以下代码
+
     ````Shell
+    #重启自动加载 编辑(创建) /etc/rc.local 文件  添加以下代码
+    
     #!/bin/sh -e
     /sbin/iptables-restore < /etc/iptables.rules
     exit 0
