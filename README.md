@@ -31,9 +31,14 @@
 
     ##### 防火墙设置 [可选]
     ```Shell
+    apt-get purge netfilter-persistent #不生效卸载
+    #清空规则
+    iptables -F
     #如果服务器有防火墙需要设置放行端口 
     iptables -I INPUT -p tcp --dport 80 -j ACCEPT #单端口
     iptables -I INPUT -p tcp -m multiport --dports 22,80,443,7080,8088 -j ACCEPT #多端口
+    #修改默认为拒绝所有
+    iptables -P INPUT DROP
     #保存规则
     iptables-save > /etc/iptables.rules  
     ````
