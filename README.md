@@ -48,7 +48,9 @@
     ```Shell
     #添加执行权限
     chmod +x /etc/rc.local
-    #systemctl enable rc-local #[此项不需要] [报错参考](https://blog.csdn.net/qq_17802895/article/details/114289172)
+    #[如果开机无法启动 使用] 报错参考 https://blog.csdn.net/qq_17802895/article/details/114289172
+    systemctl enable rc-local 
+    #启动
     systemctl start rc-local
     ```
 
