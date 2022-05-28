@@ -53,6 +53,11 @@ rcL
 
 
 installOls(){
+
+	if [ -e /usr/local/lsws/bin/lswsctrl ] ; then
+		echo "OpenLiteSpeed 已存在"
+		exit 0
+	fi
 	#添加存储库
 	wget -O - http://rpms.litespeedtech.com/debian/enable_lst_debian_repo.sh | bash
 	#
@@ -142,8 +147,12 @@ certSSL(){
 # 安装MariaDB数据库
 installMariaDB(){
 
+	if [ -e /usr/bin/mariadb ] ; then
+		echo "MariaDB 已存在"
+		exit 0
+	fi
 	# 安装依赖
-	apt-get install software-properties-common dirmngr
+	apt-get install software-properties-common dirmngr -y
 	# 添加密钥
 	apt-key adv --fetch-keys 'https://mariadb.org/mariadb_release_signing_key.asc'
 	# 选择系统
@@ -170,7 +179,7 @@ installMariaDB(){
     fi
 
     apt update
-	apt install mariadb-server
+	apt install mariadb-server -y
 	# 重启防止出错
 	systemctl restart mariadb
 
