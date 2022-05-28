@@ -73,6 +73,7 @@ installOls(){
 	chmod +x vm.sh
 
 	cat /usr/local/lsws/adminpasswd
+	cp /usr/local/lsws/adminpasswd ./webAdmin
 }
 
 
@@ -198,12 +199,23 @@ installMariaDB(){
 }
 
 
+# 下载最新版WordPress程序
+wordpressGet(){
+	cd ~
+	if [ -e latest.tar.gz ] ; then
+		rm latest.tar.gz
+	fi
+	wget https://wordpress.org/latest.tar.gz
+	ls ~
+}
+
 
 menu(){
     echo "(1)系统设置(防火墙,编辑器,BBR)"
     echo "(2)安装OpenLiteSpeed"
     echo "(3)安装MariaDB"
     echo "(4)申请SSL证书"
+    echo "(5)下载最新版WordPress程序"
     read -p "请选择:" num
     if [ $num -eq 1 ]; then
         bbrNetfilter
@@ -213,6 +225,8 @@ menu(){
 		installMariaDB
     elif [ $num -eq 4 ] ; then
 		certSSL
+    elif [ $num -eq 5 ] ; then
+		wordpressGet
     else
         echo "输入无效"
         exit 0
