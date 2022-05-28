@@ -1,12 +1,10 @@
 #!/bin/bash
 
-apt update
-
 bbrNetfilter(){
 
-	if [ `command -v vi` ] ; then
-		apt purge vim-common -y
-	fi
+	# if [ `command -v vi` ] ; then
+	# 	apt purge vim-common -y
+	# fi
 
 	apt install vim -y
 
@@ -57,7 +55,7 @@ installOls(){
 	#添加存储库
 	wget -O - http://rpms.litespeedtech.com/debian/enable_lst_debian_repo.sh | bash
 	#
-	apt install openlitespeed
+	apt install openlitespeed -y
 	#
 	if [ -e /usr/local/lsws/lsphp74/bin/lsphp ] ; then
 		#wordpress 必须组件 
@@ -67,6 +65,8 @@ installOls(){
 	cd ~
 	wget https://github.com/mina998/wtools/raw/lsws/scripts/vm.sh
 	chmod +x vm.sh
+
+	cat /usr/local/lsws/adminpasswd
 }
 
 
