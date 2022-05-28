@@ -52,5 +52,105 @@ rcL
 
 }
 
-bbrNetfilter
+
+installOls(){
+	#添加存储库
+	wget -O - http://rpms.litespeedtech.com/debian/enable_lst_debian_repo.sh | bash
+	#
+	apt install openlitespeed
+	#
+	if [ -e /usr/local/lsws/lsphp74/bin/lsphp ] ; then
+		#wordpress 必须组件 
+		apt install lsphp74-imagick lsphp74-curl lsphp74-intl -y
+	fi
+
+	cd ~
+	wget https://github.com/mina998/wtools/raw/lsws/scripts/vm.sh
+	chmod +x vm.sh
+}
+
+
+#申请SSL证书
+certSSL(){
+	# 
+	if [ ! -x /usr/bin/socat ] ; then 
+		apt install socat -y
+	fi
+	# 安装curl
+	if [ ! `command -v curl` ] ; then 
+		apt install curl -y
+	fi
+	# 判断是否安装定时任务工具
+	if [ ! `command -v crontab` ] ; then
+	    apt-get install cron -y
+	    service cron restart
+	fi
+	# 安装PING命令
+	if [ ! `command -v ping` ] ; then
+	    apt install iputils-ping -y
+	fi
+	# 下载安装证书签发程序
+	if [ ! -f "/root/.acme.sh/acme.sh" ] ; then 
+		curl https://get.acme.sh | sh -s email=my@example.com
+	fi
+	# 获取网站根目录
+	read -p "请输入网站文档根目录(eg:/usr/local/lsws/wordpress/html):" siteDocRoot
+	if [ ! -d $siteDocRoot ] ; then
+		echo '目录不存在!'
+		exit 0
+	fi
+	# 获取证书保存目录
+	read -p "请输入证书保存目录(eg:/usr/local/lsws/wordpress/ssl):" sslSaveRoot
+	if [ ! -d $sslSaveRoot ] ; then
+		mkdir -p $sslSaveRoot
+	fi
+	# 获取域名
+	read -p "请输入域名(eg:www.demo.com):" domain
+	if [ -z $domain ] ; then
+		echo '域名不能为空!'
+		exit 0
+	fi
+	# 获取本机IP
+	local2_ip=$(curl -s https://api.ip.sb/ip -A Mozilla)
+	# 获取域名解析IP
+	domain_ip=$(ping "${domain}" -c 1 | sed '1{s/[^(]*(//;s/).*//;q}')
+	# 判断是否解析成功
+	if [ $localh_ip=$domain_ip ] ; then
+		echo "域名dns解析IP: $domain_ip"
+	else
+		echo "域名解析失败."
+		exit 2
+	fi
+
+	# 开使申请证书
+	~/.acme.sh/acme.sh --issue -d $domain --webroot $siteDocRoot
+	#~/.acme.sh/acme.sh --issue -d $domain -d www.$domain --webroot $siteDocRoot
+	# 证书签发是否成功
+	if [ ! -f "/root/.acme.sh/$domain/fullchain.cer" ] ; then 
+		echo "证书签发失败."
+		exit 0
+	fi
+	# copy/安装 证书
+	~/.acme.sh/acme.sh --install-cert -d $domain --cert-file $sslSaveRoot/cert.pem --key-file $sslSaveRoot/key.pem --fullchain-file $sslSaveRoot/fullchain.pem --reloadcmd "service lsws force-reload"
+	# 
+	echo "证书文件: $sslSaveRoot/cert.pem"
+	echo "私钥文件: $sslSaveRoot/key.pem"
+	echo "证书全链: $sslSaveRoot/fullchain.pem"
+}
+
+
+menu(){
+    echo "(1)系统设置(防火墙,编辑器,BBR)"
+    echo "(2)安装OpenLiteSpeed"
+    echo "(3)申请SSL证书"
+    read -p "请选择:" num
+    if [ $num -eq 1 ]; then
+        bbrNetfilter
+    elif [ $num -eq 2 ] ; then
+    	installOls
+    else
+        certSSL
+    fi
+}
+menu
 
