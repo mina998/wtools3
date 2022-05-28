@@ -224,6 +224,8 @@
     php_value upload_max_filesize = 300M
     #设置脚本可以分配的最大内存量，防止失控的脚本独占服务器内存
     php_value memory_limit = 256M #安装WooCommerce 推荐512
+    #
+    php_value max_execution_time = 600
     ```
 
     ##### 手动备份恢复网站
