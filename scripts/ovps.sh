@@ -2,11 +2,10 @@
 
 bbrNetfilter(){
 
-	# if [ `command -v vi` ] ; then
-	# 	apt purge vim-common -y
-	# fi
-
-	apt install vim -y
+	if [ ! `command -v vim` ] ; then
+		apt purge vim-common -y
+		apt install vim -y
+	fi
 
 	#开启BBR
 	if [ ! `sysctl -p` ] ; then
