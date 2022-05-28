@@ -29,10 +29,12 @@ bbrNetfilter(){
 :INPUT DROP
 :FORWARD ACCEPT
 :OUTPUT ACCEPT
--A INPUT -p icmp -j ACCEPT
--A INPUT -p tcp -m multiport --dports 22,80,443,7080,8088 -j ACCEPT
 -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
+-A INPUT -p icmp -j ACCEPT
 -A INPUT -i lo -j ACCEPT
+-A INPUT -p tcp -m multiport --dports 22,80,443 -j ACCEPT
+-A INPUT -p tcp -m tcp --dport 7080 -j ACCEPT
+-A INPUT -p tcp -m tcp --dport 8088 -j ACCEPT
 COMMIT
 # Completed
 iptablesRules
