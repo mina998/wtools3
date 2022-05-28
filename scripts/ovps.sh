@@ -158,12 +158,12 @@ installMariaDB(){
 	apt-key adv --fetch-keys 'https://mariadb.org/mariadb_release_signing_key.asc'
 	# 选择系统
 	echo "(1)ubuntu 18.04 (2)ubuntu 20.04 (3)debian 9 (4)debian 10 (5)debian 11"
-    read -p "请选择:" num
-    if [ $num -eq 1 ]; then
-        # ubuntu 18.04
+	read -p "请选择:" num
+	if [ $num -eq 1 ]; then
+		# ubuntu 18.04
 		add-apt-repository 'deb [arch=amd64,arm64,ppc64el] https://mirrors.gigenet.com/mariadb/repo/10.5/ubuntu bionic main'
-    elif [ $num -eq 2 ] ; then
-    	# ubuntu 20.04
+	elif [ $num -eq 2 ] ; then
+		# ubuntu 20.04
 		add-apt-repository 'deb [arch=amd64,arm64,ppc64el,s390x] https://mirrors.gigenet.com/mariadb/repo/10.5/ubuntu focal main'
 	elif [ $num -eq 3 ]; then
 		# debian 9
@@ -171,15 +171,15 @@ installMariaDB(){
 	elif [ $num -eq 4 ]; then
 		# debian 10
 		add-apt-repository 'deb [arch=amd64,arm64,ppc64el] https://mirrors.gigenet.com/mariadb/repo/10.5/debian buster main'
-    elif [ $num -eq 5 ]; then
-        # debian 11
+	elif [ $num -eq 5 ]; then
+		# debian 11
 		add-apt-repository 'deb [arch=amd64,i386,arm64,ppc64el] https://mirrors.gigenet.com/mariadb/repo/10.5/debian bullseye main'
 	else
 		echo "无效输入"
 		exit 0
-    fi
+	fi
 
-    apt update
+	apt update
 	apt install mariadb-server -y
 	# 重启防止出错
 	systemctl restart mariadb
