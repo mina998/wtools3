@@ -32,7 +32,7 @@ exportDBfile(){
 	    exit 0
 	fi
 	# 导出MySQL数据库
-    mysqldump -u$dbuser -p$dbpass $dbname | gzip -9 - > $dbfile
+	mysqldump -u$dbuser -p$dbpass $dbname | gzip -9 - > $dbfile
 }
 
 # 初始化一个仓库

@@ -39,16 +39,16 @@ exportDBfile(){
 	    exit 0
 	fi
 	# 远程导出MySQL数据库
-    ssh -tt root@$dbhost "mysqldump -u$dbuser -p$dbpass $dbname > $dbfile"
-    # 传回远程文件
-    scp root@$dbhost:/root/$dbfile ./
+	ssh -tt root@$dbhost "mysqldump -u$dbuser -p$dbpass $dbname > $dbfile"
+	# 传回远程文件
+	scp root@$dbhost:/root/$dbfile ./
 	# 是否传回成功
 	if [ ! -e $dbfile ] ; then
 		echo "数据库文件传回失败"
 		exit 0
 	fi
-    # 删除远程备份文件
-    ssh -tt root@$dbhost "rm $dbfile"
+	# 删除远程备份文件
+	ssh -tt root@$dbhost "rm $dbfile"
 }
 
 # 初始化一个仓库
