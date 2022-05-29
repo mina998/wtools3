@@ -49,7 +49,7 @@ exportDBfile(){
 
 
 # 初始化一个仓库
-if [ ! -z `ls -a | grep '.git'` ] ; then
+if [ -z `ls -a | grep '.git'` ] ; then
   	git config --global user.email "you@example.com"
   	git config --global user.name "Your Name"
 	git init 
@@ -59,5 +59,5 @@ fi
 
 exportDBfile
 git add .
-git commit -m "$(date +%Y-%m-%d %H:%M:%S)" > /dev/null
+git commit -m "$(date +%Y-%m-%d\#%H:%M:%S)" > /dev/null
 git push origin $branch
