@@ -116,3 +116,15 @@ huifuFormGithub(){
 	#
 	rm $dbname.sql
 }
+
+
+menu(){
+    echo "上传到GITHUB(1)  从GITHUB还原(2)"
+    read -p "请选择:" num
+    if [ $num -eq 1 ]; then
+        toGithubPush
+    else
+        huifuFormGithub
+    fi
+}
+menu
