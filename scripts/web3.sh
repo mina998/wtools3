@@ -43,9 +43,9 @@ exportDBfile(){
 # 删除数据库所有表
 dropDBTables(){
 	isDBExist
-    	conn="mysql -D$dbname -u$dbuser -p$dbpass -s -e"
-    	drop=$($conn "SELECT concat('DROP TABLE IF EXISTS ', table_name, ';') FROM information_schema.tables WHERE table_schema = '${db_name}'")
-    	$($conn "${drop}")
+	conn="mysql -D$dbname -u$dbuser -p$dbpass -s -e"
+	drop=$($conn "SELECT concat('DROP TABLE IF EXISTS ', table_name, ';') FROM information_schema.tables WHERE table_schema = '${db_name}'")
+	$($conn "${drop}")
 }
 
 # 上传到GITHUB
@@ -98,7 +98,7 @@ huifuFormGithub(){
 	else
 		#拉取指定 提交id 或 分支 代码
 		git init
-		git config --global --add safe.directory $sitecp
+		#git config --global --add safe.directory $sitecp
 		git remote add origin $repoto
 		git fetch --all
 		git reset --hard $rcid

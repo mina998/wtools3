@@ -26,7 +26,7 @@ dbhost=10.0.0.10
 #切换工作路径
 cd $sitecp
 #导出数据文件名
-dbfile=$dbname.sql
+dbfile=$dbname.sql.gz
 # 导出远程数据库函数
 exportDBfile(){
 	# 如果本地存在历史备份就删除
@@ -39,7 +39,7 @@ exportDBfile(){
 	    exit 0
 	fi
 	# 远程导出MySQL数据库
-	ssh -tt root@$dbhost "mysqldump -u$dbuser -p$dbpass $dbname > $dbfile"
+	ssh -tt root@$dbhost "mysqldump -u$dbuser -p$dbpass $dbname | gzip -9 - > $dbfile"
 	# 传回远程文件
 	scp root@$dbhost:/root/$dbfile ./
 	# 是否传回成功
