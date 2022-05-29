@@ -40,6 +40,14 @@ exportDBfile(){
 	mysqldump -u$dbuser -p$dbpass $dbname | gzip -9 - > $dbfile
 }
 
+# 删除数据库所有表
+dropDBTables(){
+	isDBExist
+    conn="mysql -D$dbname -u$dbuser -p$dbpass -s -e"
+    drop=$($conn "SELECT concat('DROP TABLE IF EXISTS ', table_name, ';') FROM information_schema.tables WHERE table_schema = '${db_name}'")
+    $($conn "${drop}")
+}
+
 # 上传到GITHUB
 toGithubPush(){
 	#切换工作路径
@@ -77,7 +85,7 @@ huifuFormGithub(){
 	read -p "请输入要拉取指定提交ID(例:2ef3fb1), 如果留空将拉取最新代码:" rcid
 	if [ -z "${rcid}" ];then
 		#拉取最新代码
-		git clone --depth=1 $repo temp
+		git clone -b $branch --depth=1 $repoto temp
 		if [ ! -d temp ];then
 			echo "拉取代码失败,退出"
 			exit 0
@@ -89,7 +97,7 @@ huifuFormGithub(){
 	else
 		#拉取指定 提交id 或 分支 代码
 		git init
-		git remote add origin $repo
+		git remote add origin $repoto
 		git fetch --all
 		git reset --hard $rcid
 	fi
@@ -108,7 +116,7 @@ huifuFormGithub(){
 		exit 0
 	fi
 	#
-	isDBExist
+	dropDBTables
 	#解压Sql文件
 	gzip -d $dbfile
 	#把数据导入到指定数据库
