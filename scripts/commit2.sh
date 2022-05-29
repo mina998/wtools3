@@ -32,11 +32,17 @@ exportDBfile(){
     ssh -tt root@$dbhost "mysqldump -u$dbuser -p$dbpass $dbname > $dbname.sql"
     # 传回远程文件
     scp root@$dbhost:/root/$dbname.sql ./
+	# 是否传回成功
+	if [ ! -e $dbname.sql ] ; then
+		echo "数据库文件传回失败"
+		exit 0
+	fi
     # 删除远程备份文件
     ssh -tt root@$dbhost "rm $dbname.sql"
 }
 # 
 if [ ! -d .git ] ; then
+	git config
 	git init 
 	git checkout -B $branch
 	git remote add origin $repoto
