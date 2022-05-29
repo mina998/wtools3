@@ -19,7 +19,7 @@ dbpass=463888
 #切换工作路径
 cd $sitecp
 #导出数据文件名
-dbfile=$dbname.sql.gz
+dbfile=$dbname.sql
 # 导出远程数据库函数
 exportDBfile(){
 	# 如果本地存在历史备份就删除
@@ -32,7 +32,7 @@ exportDBfile(){
 	    exit 0
 	fi
 	# 导出MySQL数据库
-	mysqldump -u$dbuser -p$dbpass $dbname | gzip -9 - > $dbfile
+	mysqldump -u$dbuser -p$dbpass $dbname > $dbfile
 }
 
 # 初始化一个仓库
