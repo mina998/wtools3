@@ -4,35 +4,50 @@
 #设置用户名和令牌,自动提交不需要手动输入 user为github帐号 pwd为token
 #git remote set-url origin https://user:pwd@github.com/mina998/test.git
 
-#设置本地仓库路径
-repo=/repo_path/
-#站点路径
-site=/site_path/
-#远程分支
+#设置本地仓库路径(站点路径)
+sitecp=/site_path/
+#带用户名密码远程仓库地址
+repoto=https://username:password@github.com/username/repo.git
+#分支名称
 branch=master
-#加解密字符串
-code=mina998
 #导出数据库名称
 dbname=wordpressdb2
-#数据库用户名, 如果不设置用户名和密码, 将用root用户空密码操作
-dbuser=root
+#数据库用户名
+dbuser=soroy
 #数据库密码
-dbpass=root
+dbpass=463888
+#切换工作路径
+cd $sitecp
 
-cd $repo && rm -rf * && cp -r $site/* ./
+# 导出远程数据库函数
+exportDBfile(){
+	# 如果本地存在历史备份就删除
+	if [ -e $dbname.sql ] ; then
+		rm $dbname.sql
+	fi
+	#判断数据库是否存在
+	if [ -z `mysql -u$dbuser -p$dbpass -Nse "show DATABASES like '$dbname'"` ] ; then
+	    echo "数据库不存在"
+	    exit 0
+	fi
+	# 导出MySQL数据库
+    mysqldump -u$dbuser -p$dbpass $dbname | gzip -9 - > $dbname.sql.gz
+}
 
-#如果没有设置MySQL用户名,就用root用户导出数据库,否则以指定用户导出
-if [ -z $dbuser ]; then
-	mysqldump $dbname | gzip -9 - > $dbname.sql.gz
-else
-	mysqldump -u$dbuser -p$dbpass $dbname | gzip -9 - > $dbname.sql.gz
+# 初始化一个仓库
+if [ -z `ls -a | grep '.git'` ] ; then
+  	git config --global user.email "iosss@qq.com"
+  	git config --global user.name "soroy"
+	git init 
+	git checkout -B $branch
+	git remote add origin $repoto
 fi
 
-#把指定的文件移动到db目录
-mkdir db && mv $dbname.sql.gz wp-config.php ./db/
-#加密打包文件夹
-tar -zcf - db/ --remove-files|openssl des3 -salt -k $code | dd of=db.des3
+exportDBfile
 
 git add .
-git commit -m "$(date +%Y-%m-%d %H%M%S)"
+git commit -m "$(date +%Y-%m-%d\#%H:%M:%S)" > /dev/null
 git push origin $branch
+
+rm $dbname.sql
+
