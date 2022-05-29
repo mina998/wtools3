@@ -28,6 +28,12 @@ exportDBfile(){
 	if [ -e $dbname.sql ] ; then
 		rm $dbname.sql
 	fi
+
+	#判断数据库是否存在
+	if [ -z `ssh -tt root@$dbhost "mysql -uroot -p463888 -Nse \"show DATABASES like '$dbname'\""` ] ; then
+	    echo "数据库不存在"
+	    exit 0
+	fi
 	# 远程导出MySQL数据库
     ssh -tt root@$dbhost "mysqldump -u$dbuser -p$dbpass $dbname > $dbname.sql"
     # 传回远程文件
@@ -42,7 +48,8 @@ exportDBfile(){
 }
 # 
 if [ ! -d .git ] ; then
-	git config
+  	git config --global user.email "you@example.com"
+  	git config --global user.name "Your Name"
 	git init 
 	git checkout -B $branch
 	git remote add origin $repoto
@@ -50,5 +57,5 @@ fi
 
 exportDBfile
 git add .
-git commit -m "$(date +%Y-%m-%d %H%M%S)"
+git commit -m "$(date +%Y-%m-%d %H:%M:%S)"
 git push origin $branch
