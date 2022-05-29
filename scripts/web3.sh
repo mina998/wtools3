@@ -96,7 +96,7 @@ huifuFormGithub(){
 		#切换目录 删除目录
 		cd .. && rm -rf temp
 	else
-		#拉取指定 提交id 或 分支 代码
+		#拉取指定 提交ID 代码
 		git init
 		#git config --global --add safe.directory $sitecp
 		git remote add origin $repoto
