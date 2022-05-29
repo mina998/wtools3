@@ -80,7 +80,7 @@ else
 fi
 
 # 添加HTTP监听器
-if grep -i 'address.*\*:80' httpd_config.conf > /dev/null ; then
+if grep -i 'address.*\*:80$' httpd_config.conf > /dev/null ; then
     sed -r '/address.*\*:80/a \\t map                     '$vmhost' '$domain httpd_config.conf
 else
     sed -i '/listener Default/i listener HTTPS {' httpd_config.conf
