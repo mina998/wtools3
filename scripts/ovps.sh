@@ -10,7 +10,7 @@ bbrNetfilter(){
 	fi
 
 	#开启BBR
-	if [ ! `sysctl -p` ] ; then
+	if ! lsmod | grep bbr > /dev/null ; then
 		bash -c 'echo "net.core.default_qdisc=fq" >> /etc/sysctl.conf'
 		bash -c 'echo "net.ipv4.tcp_congestion_control=bbr" >> /etc/sysctl.conf'
 		sysctl -p

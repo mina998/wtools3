@@ -1,0 +1,48 @@
+#!/bin/bash
+
+#crontab -e
+#设置用户名和令牌,自动提交不需要手动输入 user为github帐号 pwd为token
+#git remote set-url origin https://user:pwd@github.com/mina998/test.git
+
+
+#设置本地仓库路径(站点路径)
+sitecp=/site_path/
+#带用户名密码远程仓库地址
+repoto=https://username:password@github.com/username/repo.git
+#远程分支
+branch=master
+#导出数据库名称
+dbname=wordpressdb2
+#数据库用户名
+dbuser=soroy
+#数据库密码
+dbpass=463888
+#数据库主机地址
+dbhost=10.0.0.10
+#切换工作路径
+cd $sitecp
+
+# 导出远程数据库函数
+exportDBfile(){
+	# 如果本地存在历史备份就删除
+	if [ -e $dbname.sql ] ; then
+		rm $dbname.sql
+	fi
+	# 远程导出MySQL数据库
+    ssh -tt root@$dbhost "mysqldump -u$dbuser -p$dbpass $dbname > $dbname.sql"
+    # 传回远程文件
+    scp root@$dbhost:/root/$dbname.sql ./
+    # 删除远程备份文件
+    ssh -tt root@$dbhost "rm $dbname.sql"
+}
+# 
+if [ ! -d .git ] ; then
+	git init 
+	git checkout -B $branch
+	git remote add origin $repoto
+fi
+
+exportDBfile
+git add .
+git commit -m "$(date +%Y-%m-%d %H%M%S)"
+git push origin $branch
