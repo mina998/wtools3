@@ -28,9 +28,8 @@ exportDBfile(){
 	if [ -e $dbname.sql ] ; then
 		rm $dbname.sql
 	fi
-
 	#判断数据库是否存在
-	if [ -z `ssh -tt root@$dbhost "mysql -uroot -p463888 -Nse \"show DATABASES like '$dbname'\""` ] ; then
+	if [ -z `ssh -tt root@$dbhost "mysql -u$dbuser -p$dbpass -Nse \"show DATABASES like '$dbname'\""` ] ; then
 	    echo "数据库不存在"
 	    exit 0
 	fi
@@ -46,7 +45,6 @@ exportDBfile(){
     # 删除远程备份文件
     ssh -tt root@$dbhost "rm $dbname.sql"
 }
-
 
 # 初始化一个仓库
 if [ -z `ls -a | grep '.git'` ] ; then
