@@ -16,10 +16,8 @@ dbname=wordpressdb2
 dbuser=soroy
 #数据库密码
 dbpass=463888
-#数据库主机地址
-dbhost=10.0.0.10
 #导出数据文件名
-dbfile=$dbname.sql
+dbfile=$dbname.sql.gz
 
 #检测数据库是否存在
 isDBExist(){
@@ -39,7 +37,7 @@ exportDBfile(){
 	#
 	isDBExist
 	# 导出MySQL数据库
-	mysqldump -u$dbuser -p$dbpass $dbname > $dbfile
+	mysqldump -u$dbuser -p$dbpass $dbname | gzip -9 - > $dbfile
 }
 
 # 上传到GITHUB
@@ -48,8 +46,8 @@ toGithubPush(){
 	cd $sitecp
 	# 初始化一个仓库
 	if [ -z `ls -a | grep '.git'` ] ; then
-	  	git config --global user.email "you@example.com"
-	  	git config --global user.name "Your Name"
+	  	git config --global user.email "iosss@qq.com"
+	  	git config --global user.name "iosss"
 		git init 
 		git checkout -B $branch
 		git remote add origin $repoto
@@ -111,6 +109,10 @@ huifuFormGithub(){
 	fi
 	#
 	isDBExist
+	#解压Sql文件
+	gzip -d $dbfile
 	#把数据导入到指定数据库
-	mysql -u$dbuser -p$dbpass $dbname < $sitecp/$dbfile
+	mysql -u$dbuser -p$dbpass $dbname < $sitecp/$dbname.sql
+	#
+	rm $dbname.sql
 }
