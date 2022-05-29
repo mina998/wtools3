@@ -10,7 +10,7 @@ sitecp=/site_path/
 repoto=https://username:password@github.com/username/repo.git
 #分支名称
 branch=master
-#导出数据库名称
+#数据库名称
 dbname=wordpressdb2
 #数据库用户名
 dbuser=soroy
@@ -18,12 +18,13 @@ dbuser=soroy
 dbpass=463888
 #切换工作路径
 cd $sitecp
-
+#导出数据文件名
+dbfile=$dbname.sql.gz
 # 导出远程数据库函数
 exportDBfile(){
 	# 如果本地存在历史备份就删除
-	if [ -e $dbname.sql ] ; then
-		rm $dbname.sql
+	if [ -e $dbfile ] ; then
+		rm $dbfile
 	fi
 	#判断数据库是否存在
 	if [ -z `mysql -u$dbuser -p$dbpass -Nse "show DATABASES like '$dbname'"` ] ; then
@@ -31,7 +32,7 @@ exportDBfile(){
 	    exit 0
 	fi
 	# 导出MySQL数据库
-    mysqldump -u$dbuser -p$dbpass $dbname | gzip -9 - > $dbname.sql.gz
+    mysqldump -u$dbuser -p$dbpass $dbname | gzip -9 - > $dbfile
 }
 
 # 初始化一个仓库
@@ -49,5 +50,5 @@ git add .
 git commit -m "$(date +%Y-%m-%d\#%H:%M:%S)" > /dev/null
 git push origin $branch
 
-rm $dbname.sql
+rm $dbfile
 
