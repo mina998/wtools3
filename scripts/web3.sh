@@ -43,9 +43,9 @@ exportDBfile(){
 # 删除数据库所有表
 dropDBTables(){
 	isDBExist
-    conn="mysql -D$dbname -u$dbuser -p$dbpass -s -e"
-    drop=$($conn "SELECT concat('DROP TABLE IF EXISTS ', table_name, ';') FROM information_schema.tables WHERE table_schema = '${db_name}'")
-    $($conn "${drop}")
+    	conn="mysql -D$dbname -u$dbuser -p$dbpass -s -e"
+    	drop=$($conn "SELECT concat('DROP TABLE IF EXISTS ', table_name, ';') FROM information_schema.tables WHERE table_schema = '${db_name}'")
+    	$($conn "${drop}")
 }
 
 # 上传到GITHUB
@@ -57,6 +57,7 @@ toGithubPush(){
 	  	git config --global user.email "iosss@qq.com"
 	  	git config --global user.name "iosss"
 		git init 
+		git config --global --add safe.directory $sitecp
 		git checkout -B $branch
 		git remote add origin $repoto
 	fi
@@ -66,7 +67,7 @@ toGithubPush(){
 	git commit -m "$(date +%Y-%m-%d\#%H:%M:%S)" > /dev/null
 	git push origin $branch
 
-	rm $dbfile
+	rm -rf .git/ $dbfile
 }
 
 
@@ -97,6 +98,7 @@ huifuFormGithub(){
 	else
 		#拉取指定 提交id 或 分支 代码
 		git init
+		git config --global --add safe.directory $sitecp
 		git remote add origin $repoto
 		git fetch --all
 		git reset --hard $rcid
@@ -104,11 +106,11 @@ huifuFormGithub(){
 
 	rm -rf .git
 	#设置文件目录所有者
-	chown -R nobody:nogroup ../	
+	chown -R nobody:nogroup wordpress/	
 	#目录权限 
-	find ../ -type d -exec chmod 750 {} \; 
+	find wordpress/ -type d -exec chmod 750 {} \; 
 	#文件权限
-	find ../ -type f -exec chmod 640 {} \; 
+	find wordpress/ -type f -exec chmod 640 {} \; 
 
 	#检查数据库文件是否存在
 	if [ ! -e $dbfile ] ; then
@@ -123,6 +125,8 @@ huifuFormGithub(){
 	mysql -u$dbuser -p$dbpass $dbname < $sitecp/$dbname.sql
 	#
 	rm $dbname.sql
+	# 重新加载服务配置
+	service lsws force-reload
 }
 
 
