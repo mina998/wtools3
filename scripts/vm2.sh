@@ -69,8 +69,8 @@ sed -i '/virtualHost Example{/i \\t setUIDMode              2' httpd_config.conf
 sed -i '/virtualHost Example{/i\}' httpd_config.conf
 
 # 添加SSL监听器
-if grep -i 'address.*\*:443' httpd_config.conf > /dev/null ; then
-    sed -r '/address.*\*:443/a \\t map                     '$vmhost' '$domain httpd_config.conf
+if grep -i 'address.*\*:443$' httpd_config.conf > /dev/null ; then
+    sed -i -r '/address.*\*:443/a \\t map                     '$vmhost' '$domain httpd_config.conf
 else
     sed -i '/listener Default/i listener HTTPS {' httpd_config.conf
     sed -i '/listener Default/i \\t address                 *:443' httpd_config.conf
@@ -81,9 +81,9 @@ fi
 
 # 添加HTTP监听器
 if grep -i 'address.*\*:80$' httpd_config.conf > /dev/null ; then
-    sed -r '/address.*\*:80/a \\t map                     '$vmhost' '$domain httpd_config.conf
+    sed -i -r '/address.*\*:80/a \\t map                     '$vmhost' '$domain httpd_config.conf
 else
-    sed -i '/listener Default/i listener HTTPS {' httpd_config.conf
+    sed -i '/listener Default/i listener HTTP {' httpd_config.conf
     sed -i '/listener Default/i \\t address                 *:80' httpd_config.conf
     sed -i '/listener Default/i \\t secure                  0' httpd_config.conf
     sed -i '/listener Default/i \\t map                     '$vmhost' '$domain httpd_config.conf
@@ -112,4 +112,4 @@ echo -e '<?php \n phpinfo();' > $vmhost/wordpress/index.php
 chown -R nobody:nogroup $vmhost/wordpress
 # 重启系统
 echo "本次操作需要重启生效"
-reboot
+service lsws force-reload
