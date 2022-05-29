@@ -72,8 +72,8 @@ installOls(){
 	fi
 
 	cd ~
-	wget https://github.com/mina998/wtools/raw/lsws/scripts/vm.sh
-	chmod +x vm.sh
+	wget https://github.com/mina998/wtools/raw/lsws/scripts/vm2.sh
+	chmod +x vm2.sh
 
 	cat /usr/local/lsws/adminpasswd
 	cp /usr/local/lsws/adminpasswd ./webAdmin

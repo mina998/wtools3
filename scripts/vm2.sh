@@ -110,6 +110,8 @@ mkdir -p $vmhost/wordpress
 echo -e '<?php \n phpinfo();' > $vmhost/wordpress/index.php
 # 修改权限
 chown -R nobody:nogroup $vmhost/wordpress
-# 重启系统
-echo "本次操作需要重启生效"
+# 重新加载服务配置
 service lsws force-reload
+
+echo "配置完成"
+echo $domain
