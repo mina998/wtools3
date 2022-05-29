@@ -46,8 +46,10 @@ exportDBfile(){
     # 删除远程备份文件
     ssh -tt root@$dbhost "rm $dbname.sql"
 }
-# 
-if [ ! -d .git ] ; then
+
+
+# 初始化一个仓库
+if [ ! -z `ls -a | grep '.git'` ] ; then
   	git config --global user.email "you@example.com"
   	git config --global user.name "Your Name"
 	git init 
@@ -57,5 +59,5 @@ fi
 
 exportDBfile
 git add .
-git commit -m "$(date +%Y-%m-%d %H:%M:%S)"
+git commit -m "$(date +%Y-%m-%d %H:%M:%S)" > /dev/null
 git push origin $branch
