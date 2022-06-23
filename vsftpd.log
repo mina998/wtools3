@@ -1,0 +1,42 @@
+Thu Jun 16 01:23:28 2022 [pid 1305] [soroy] OK UPLOAD: Client "::ffff:192.168.5.207", "/2022/06/z02-1024x1024.jpg", 225976 bytes, 13977.68Kbyte/sec
+Thu Jun 16 01:23:28 2022 [pid 1305] [soroy] OK UPLOAD: Client "::ffff:192.168.5.207", "/2022/06/z02-150x150.jpg", 7964 bytes, 6277.11Kbyte/sec
+Thu Jun 16 01:23:28 2022 [pid 1305] [soroy] OK UPLOAD: Client "::ffff:192.168.5.207", "/2022/06/z02-768x768.jpg", 130241 bytes, 615.47Kbyte/sec
+Thu Jun 16 01:23:28 2022 [pid 1305] [soroy] OK UPLOAD: Client "::ffff:192.168.5.207", "/2022/06/z02-1536x1536.jpg", 475761 bytes, 16164.86Kbyte/sec
+
+Thu Jun 16 01:23:27 2022 [pid 1294] CONNECT: Client "::ffff:192.168.5.207"
+Thu Jun 16 01:23:27 2022 [pid 1293] [soroy] OK LOGIN: Client "::ffff:192.168.5.207"
+Thu Jun 16 01:23:27 2022 [pid 1305] [soroy] OK MKDIR: Client "::ffff:192.168.5.207", "/2022"
+Thu Jun 16 01:23:27 2022 [pid 1305] [soroy] OK MKDIR: Client "::ffff:192.168.5.207", "/2022/06"
+Thu Jun 16 01:23:28 2022 [pid 1305] [soroy] OK UPLOAD: Client "::ffff:192.168.5.207", "/2022/06/z02.jpg", 1810347 bytes, 6189.08Kbyte/sec
+Thu Jun 16 01:23:28 2022 [pid 1305] [soroy] OK UPLOAD: Client "::ffff:192.168.5.207", "/2022/06/z02-300x300.jpg", 24069 bytes, 6624.83Kbyte/sec
+Thu Jun 16 01:23:28 2022 [pid 1305] [soroy] OK UPLOAD: Client "::ffff:192.168.5.207", "/2022/06/z02-1024x1024.jpg", 225976 bytes, 13977.68Kbyte/sec
+Thu Jun 16 01:23:28 2022 [pid 1305] [soroy] OK UPLOAD: Client "::ffff:192.168.5.207", "/2022/06/z02-150x150.jpg", 7964 bytes, 6277.11Kbyte/sec
+Thu Jun 16 01:23:28 2022 [pid 1305] [soroy] OK UPLOAD: Client "::ffff:192.168.5.207", "/2022/06/z02-768x768.jpg", 130241 bytes, 615.47Kbyte/sec
+Thu Jun 16 01:23:28 2022 [pid 1305] [soroy] OK UPLOAD: Client "::ffff:192.168.5.207", "/2022/06/z02-1536x1536.jpg", 475761 bytes, 16164.86Kbyte/sec
+
+Thu Jun 16 01:23:27 2022 [pid 1294] CONNECT: Client "::ffff:192.168.5.207"
+Thu Jun 16 01:23:27 2022 [pid 1293] [soroy] OK LOGIN: Client "::ffff:192.168.5.207"
+Thu Jun 16 01:23:27 2022 [pid 1305] [soroy] OK MKDIR: Client "::ffff:192.168.5.207", "/2022"
+Thu Jun 16 01:23:27 2022 [pid 1305] [soroy] OK MKDIR: Client "::ffff:192.168.5.207", "/2022/06"
+Thu Jun 16 01:23:28 2022 [pid 1305] [soroy] OK UPLOAD: Client "::ffff:192.168.5.207", "/2022/06/z02.jpg", 1810347 bytes, 6189.08Kbyte/sec
+Thu Jun 16 01:23:28 2022 [pid 1305] [soroy] OK UPLOAD: Client "::ffff:192.168.5.207", "/2022/06/z02-300x300.jpg", 24069 bytes, 6624.83Kbyte/sec
+Thu Jun 16 01:23:28 2022 [pid 1305] [soroy] OK UPLOAD: Client "::ffff:192.168.5.207", "/2022/06/z02-1024x1024.jpg", 225976 bytes, 13977.68Kbyte/sec
+Thu Jun 16 01:23:28 2022 [pid 1305] [soroy] OK UPLOAD: Client "::ffff:192.168.5.207", "/2022/06/z02-150x150.jpg", 7964 bytes, 6277.11Kbyte/sec
+Thu Jun 16 01:23:28 2022 [pid 1305] [soroy] OK UPLOAD: Client "::ffff:192.168.5.207", "/2022/06/z02-768x768.jpg", 130241 bytes, 615.47Kbyte/sec
+Thu Jun 16 01:23:28 2022 [pid 1305] [soroy] OK UPLOAD: Client "::ffff:192.168.5.207", "/2022/06/z02-1536x1536.jpg", 475761 bytes, 16164.86Kbyte/sec
+
+Thu Jun 16 01:23:27 2022 [pid 1294] CONNECT: Client "::ffff:192.168.5.207"
+Thu Jun 16 01:23:27 2022 [pid 1293] [soroy] OK LOGIN: Client "::ffff:192.168.5.207"
+Thu Jun 16 01:23:27 2022 [pid 1305] [soroy] OK MKDIR: Client "::ffff:192.168.5.207", "/2022"
+Thu Jun 16 01:23:27 2022 [pid 1305] [soroy] OK MKDIR: Client "::ffff:192.168.5.207", "/2022/06"
+Thu Jun 16 01:23:28 2022 [pid 1305] [soroy] OK UPLOAD: Client "::ffff:192.168.5.207", "/2022/06/z02.jpg", 1810347 bytes, 6189.08Kbyte/sec
+Thu Jun 16 01:23:28 2022 [pid 1305] [soroy] OK UPLOAD: Client "::ffff:192.168.5.207", "/2022/06/z02-300x300.jpg", 24069 bytes, 6624.83Kbyte/sec
+Thu Jun 16 01:23:28 2022 [pid 1305] [soroy] OK UPLOAD: Client "::ffff:192.168.5.207", "/2022/06/z02-1024x1024.jpg", 225976 bytes, 13977.68Kbyte/sec
+Thu Jun 16 01:23:28 2022 [pid 1305] [soroy] OK UPLOAD: Client "::ffff:192.168.5.207", "/2022/06/z02-150x150.jpg", 7964 bytes, 6277.11Kbyte/sec
+Thu Jun 16 01:23:28 2022 [pid 1305] [soroy] OK UPLOAD: Client "::ffff:192.168.5.207", "/2022/06/z02-768x768.jpg", 130241 bytes, 615.47Kbyte/sec
+Thu Jun 16 01:23:28 2022 [pid 1305] [soroy] OK UPLOAD: Client "::ffff:192.168.5.207", "/2022/06/z02-1536x1536.jpg", 475761 bytes, 16164.86Kbyte/sec
+
+Thu Jun 16 01:23:28 2022 [pid 1305] [soroy] OK UPLOAD: Client "::ffff:192.168.5.207", "/2022/06/z02-1024x1024.jpg", 225976 bytes, 13977.68Kbyte/sec
+Thu Jun 16 01:23:28 2022 [pid 1305] [soroy] OK UPLOAD: Client "::ffff:192.168.5.207", "/2022/06/z02-150x150.jpg", 7964 bytes, 6277.11Kbyte/sec
+Thu Jun 16 01:23:28 2022 [pid 1305] [soroy] OK UPLOAD: Client "::ffff:192.168.5.207", "/2022/06/z02-768x768.jpg", 130241 bytes, 615.47Kbyte/sec
+Thu Jun 16 01:23:28 2022 [pid 1305] [soroy] OK UPLOAD: Client "::ffff:192.168.5.207", "/2022/06/z02-1536x1536.jpg", 475761 bytes, 16164.86Kbyte/sec
