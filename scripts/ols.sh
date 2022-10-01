@@ -271,6 +271,11 @@ random_str(){
 
 # 安装phpMyAdmin
 install_php_my_admin(){
+
+	if [ ! -d /usr/local/lsws/Example ]; then
+		echo '目录不存在!'
+		exit 0
+	fi
 	#切换工作目录
 	cd /usr/local/lsws/Example
 	#下载phpMyAdmin程序
