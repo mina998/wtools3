@@ -309,7 +309,9 @@ EOF
 	#重启服务
 	service lsws restart
 	#
-	echo -e "\033[38;5;203m访问地址: http://$domain:8088/phpMyAdmin\033[39m$@"
+	local2_ip=$(curl -s http://ip.42.pl/raw -A Mozilla)
+	#
+	echo -e "\033[38;5;203m访问地址: http://$local2_ip:8088/phpMyAdmin\033[39m$@"
 }
 
 
@@ -405,7 +407,7 @@ menu(){
 	fi
 }
 
-echo -e '\033[38;5;203m该脚本只兼容Debian系列[9, 10, 11] 和 Ubuntu系统[18.04, 20.04] 其他系统未测试\033[39m$@'
+echo -e "\033[38;5;203m该脚本只兼容Debian系列[9, 10, 11] 和 Ubuntu系统[18.04, 20.04] 其他系统未测试\033[39m$@"
 
 menu
 
