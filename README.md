@@ -167,6 +167,9 @@
     #授权test用户有testDB数据库的所有权限
     grant all privileges on testDB.* to 'test'@'%' identified by 'test123';
 
+    # 修改root 密码
+    SET PASSWORD FOR 'root'@'localhost' = PASSWORD('0310836742Zmm@@');
+
     #刷新权限
     mysql > flush privileges;
 
