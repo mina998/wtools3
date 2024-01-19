@@ -173,6 +173,12 @@
     #刷新权限
     mysql > flush privileges;
 
+    # 新版本
+    # 修改数据库用户密码
+    ALTER USER 'username'@'hostname' IDENTIFIED BY 'newpassword';
+    # 修改数据库用户名
+    RENAME USER 'old_username'@'localhost' TO 'new_username'@'localhost';
+
     ```
 
     ##### 设置远程访问
